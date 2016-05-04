@@ -43,11 +43,10 @@ Once you spin up your local server, look below at the cURL commands with the exp
 
 
 
-`Index` cURL Request
+`Index` open in Insomnia
 
-```bash
-curl -XGET http://localhost:3000/candies
-
+```
+GET http://localhost:3000/candies
 ```
 
   - Expected Response
@@ -56,10 +55,10 @@ curl -XGET http://localhost:3000/candies
   ```
 ---
 
-`Show` cURL Request
+`Show` open in Insomnia
 
-```bash
-curl -XGET http://localhost:3000/candies/3
+```
+GET http://localhost:3000/candies/3
 
 ```
 
@@ -69,10 +68,11 @@ curl -XGET http://localhost:3000/candies/3
   ```
 ---
 
-`Create` cURL Request
+`Create` open in Insomnia
 
 ```bash
-curl -XPOST -H "Content-Type: application/json" -d '{"name":"Jelly Bear","color":"orange"}' http://localhost:3000/candies
+POST http://localhost:3000/candies
+Header: Content-Type: application/json" -d '{"name":"Jelly Bear","color":"orange"}' 
 
 ```
 
@@ -84,10 +84,9 @@ curl -XPOST -H "Content-Type: application/json" -d '{"name":"Jelly Bear","color"
 ---
 
 
-- A second `Index`cURL Request
-
-  ```bash
-  curl -XGET http://localhost:3000/candies
+- A second `Index` open in Insomnia
+  ```
+  GET http://localhost:3000/candies
   ```
 
   - Expected Response
@@ -100,18 +99,19 @@ curl -XPOST -H "Content-Type: application/json" -d '{"name":"Jelly Bear","color"
 
 ---
 
-`Update` cURL Request
+`Update` open in Insomnia
 
 ```bash
-curl -XPUT -H "Content-Type: application/json" -d '{"name":"Marshmallows","color":"white"}' http://localhost:3000/candies/3
+PUT http://localhost:3000/candies/3
+-H "Content-Type: application/json" -d '{"name":"Marshmallows","color":"white"}' 
 ```
 
 ---
 
 Another `Index` Request
 
-```bash
-curl -XGET http://localhost:3000/candies
+```
+GET http://localhost:3000/candies
 ```
 
   - Expected Response
@@ -124,10 +124,10 @@ curl -XGET http://localhost:3000/candies
 
 ---
 
-`Update` cURL Request
+`Update` open Insomnia 
 
-```bash
-curl -XDELETE http://localhost:3000/candies/2
+```
+DELETE http://localhost:3000/candies/2
 ```
 
   - Expected Response
@@ -137,10 +137,10 @@ curl -XDELETE http://localhost:3000/candies/2
 
 ---
 
-`Index` cURL request, again!
+`Index` open Insomnia!
 
-```bash
-curl -XGET http://localhost:3000/candies
+```
+GET http://localhost:3000/candies
 ```
 
  - Expected Response
