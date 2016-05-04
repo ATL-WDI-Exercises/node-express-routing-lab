@@ -70,9 +70,9 @@ GET http://localhost:3000/candies/3
 
 `Create` open in Insomnia
 
-```bash
+```
 POST http://localhost:3000/candies
-Header: Content-Type: application/json" -d '{"name":"Jelly Bear","color":"orange"}' 
+ '{"name":"Jelly Bear","color":"orange"}' 
 
 ```
 
