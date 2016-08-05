@@ -161,7 +161,7 @@ http GET http://localhost:3000/candies
 http PUT http://localhost:3000/candies/3 name=Marshmallows color=White
 ```
 
----
+====
 
 ##### Index, again
 
@@ -201,35 +201,56 @@ http GET http://localhost:3000/candies
 
 ##### Update
 
-```
-DELETE http://localhost:3000/candies/2
-```
-
-  - Expected Response
-    ```json
-    {"message":"deleted"}
-    ```
-
----
-
-`Index` open Insomnia!
-
-```
-GET http://localhost:3000/candies
+```bash
+http DELETE http://localhost:3000/candies/2
 ```
 
- - Expected Response
+###### Expected Response
 
-  ```json
+```json
+{
+  "message": "deleted"
+}
+```
 
-  [{"id":1,"name":"Chewing Gum","color":"Red"},null,{"id":3,"name":"Marshmallow","color":"Pink"},{"id":4,"name":"Candy Stick","color":"Blue"}]
-  ```
+====
+
+##### Index
+
+```bash
+http GET http://localhost:3000/candies
+```
+
+###### Expected Response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Chewing Gum",
+    "color": "Red"
+  },
+  null,
+  {
+    "id": 3,
+    "name": "Marshmallow",
+    "color": "Pink"
+  },
+  {
+    "id": 4,
+    "name": "Candy Stick",
+    "color": "Blue"
+  }
+]
+```
 
 > Note: The record corresponding to the ID passed in the first request has been deleted.
 
+----
 
 
 ## Additional Resources
 
+- [httpie](https://github.com/jkbrzt/httpie)
 - [Curl Manual](http://curl.haxx.se/docs/manual.html)
 - [ExpressJS documentation](http://expressjs.com/4x/api.html)
