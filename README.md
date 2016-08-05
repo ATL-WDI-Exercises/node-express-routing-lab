@@ -20,7 +20,7 @@ competencies: Server Applications
 
 We've now seen how to write an app with Node and Express from scratch, so let's apply this concept again by creating another RESTful API using Express.
 
-A kid has come to you with an idea for an API to keep track of his candies.  You love candies!  So, you accept his proposal. You will create a resource `Candy` and use the kid's candy "data" to populate and post to your database. Check the additional resources at the bottom of this document to get some JSON data to add to your app as well - you’ll also find some HTTP request examples you can run with `httpie` to make sure your app works as expected!
+A kid has come to you with an idea for an API to keep track of his candies.  You love candies!  So, you accept his proposal. You will create a resource `Candy` and use the kid's candy "data" to populate and post to your database. Check the additional resources at the bottom of this document to get some JSON data to add to your app as well - you’ll also find some HTTP request examples you can run with [httpie](https://github.com/jkbrzt/httpie) to make sure your app works as expected!
 
 ## Exercise
 
@@ -31,20 +31,19 @@ A kid has come to you with an idea for an API to keep track of his candies.  You
 - The resource `Candy` should be accessible via the endpoint `/candies` and be RESTful
 - Implement `index`,`show`, `create`, `update`, and `destroy` functionality
 
-**Bonus:**
+#### Bonus
 
 - Handle wrong responses with appropriate HTTP status and responses (404, 500, 422)
 - Add some validations for `edit` and `update`
 
 
-#### Deliverable
+#### Deliverables
 
 An example app can be found in `solution-code`.
 
 Once you spin up your local server, look below at the httpie commands with the expected responses we want you to test on this app once you've finished building - the HTTP status should always be 2XX.
 
-
-
+----
 
 ##### Index
 
@@ -54,10 +53,31 @@ http GET localhost:3000/candies
 
 ###### Expected response:
 ```json
-[{"id":1,"name":"Chewing Gum","color":"Red"},{"id":2,"name":"Pez","color":"Green"},{"id":3,"name":"Marshmallow","color":"Pink"},{"id":4,"name":"Candy Stick","color":"Blue"}]
+[
+  {
+    "id": 1,
+    "name": "Chewing Gum",
+    "color":"Red"
+  },
+  {
+    "id": 2,
+    "name": "Pez",
+    "color": "Green"
+  },
+  {
+    "id": 3,
+    "name": "Marshmallow",
+    "color": "Pink"
+  },
+  {
+    "id": 4,
+    "name": "Candy Stick",
+    "color": "Blue"
+  }
+]
 ```
 
----
+====
 
 ##### Show
 
@@ -68,68 +88,118 @@ http GET localhost:3000/candies/3
 ###### Expected Response
 
 ```json
-{"id":3,"name":"Marshmallow","color":"Pink"}
+{
+  "id": 3,
+  "name": "Marshmallow",
+  "color": "Pink"
+}
 ```
 
----
+====
 
 ##### Create
 
-```
-POST http://localhost:3000/candies
- '{"name":"Jelly Bear","color":"orange"}' 
-
+```bash
+http POST http://localhost:3000/candies name="Gummy bear" color=Orange
 ```
 
-  - Expected Response
-    ```json
-    {"id":3,"name":"Marshmallow","color":"Pink"}
-    ```
+###### Expected Response
+```json
+{
+  "id": 3,
+  "name": "Marshmallow",
+  "color": "Pink"
+}
+```
 
----
+====
 
-
-- A second `Index` open in Insomnia
-  ```
-  GET http://localhost:3000/candies
-  ```
-
-  - Expected Response
-
-  ```json
-
-  [{"id":1,"name":"Chewing Gum","color":"Red"},{"id":2,"name":"Pez","color":"Green"},{"id":3,"name":"Marshmallow","color":"Pink"},{"id":4,"name":"Candy Stick","color":"Blue"},{"name":"Jelly Bear","color":"orange"}]
-  ```
-  > Note: The new record is sent back !
-
----
-
-`Update` open in Insomnia
+##### Index
 
 ```bash
-PUT http://localhost:3000/candies/3
--H "Content-Type: application/json" -d '{"name":"Marshmallows","color":"white"}' 
+http GET http://localhost:3000/candies
+```
+
+###### Expected Response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Chewing Gum",
+    "color": "Red"
+  },
+  {
+    "id": 2,
+    "name": "Pez",
+    "color": "Green"
+  },
+  {
+    "id": 3,
+    "name": "Marshmallow",
+    "color": "Pink"
+  },
+  {
+    "id": 4,
+    "name": "Candy Stick",
+    "color": "Blue"
+  },
+  {
+    "name": "Gummy bear",
+    "color": "Orange"
+  }
+]
+```
+
+> Note: The new record is sent back !
+
+====
+
+##### Update
+
+```bash
+http PUT http://localhost:3000/candies/3 name=Marshmallows color=White
 ```
 
 ---
 
-Another `Index` Request
+##### Index, again
 
+```bash
+http GET http://localhost:3000/candies
 ```
-GET http://localhost:3000/candies
+
+###### Expected Response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Chewing Gum",
+    "color": "Red"
+  },
+  {
+    "id": 2,
+    "name": "Pez",
+    "color": "Green"
+  },
+  {
+    "name": "Marshmallows",
+    "color": "White"
+  },
+  {
+    "id": 4,
+    "name": "Candy Stick",
+    "color": "Blue"
+  }
+]
 ```
 
-  - Expected Response
+> The record corresponding to the ID passed in the first request has been updated.
 
-  ```json
+====
 
-  [{"id":1,"name":"Chewing Gum","color":"Red"},{"id":2,"name":"Pez","color":"Green"},{"name":"Marshmallows","color":"white"},{"id":4,"name":"Candy Stick","color":"Blue"}]
-  ```
-  The record corresponding to the ID passed in the first request has been updated
-
----
-
-`Update` open Insomnia 
+##### Update
 
 ```
 DELETE http://localhost:3000/candies/2
